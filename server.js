@@ -5,7 +5,7 @@ const app = express()
 app.use(bodyParser.json())
 app.use(express.static(__dirname))
 
-const PORT = 3000
+const PORT = process.env.PORT || 3000
 
 // simple admin login
 const ADMIN = {
@@ -47,4 +47,12 @@ res.json(order)
 
 app.listen(PORT,()=>{
 console.log("LVRWORKNET UKUSA running at http://localhost:3000")
+})
+app.listen(PORT, () => {
+console.log("LVRWORKNET UKUSA running on port " + PORT)
+})
+const PORT = process.env.PORT || 3000
+
+app.listen(PORT, () => {
+console.log("LVRWORKNET UKUSA running on port " + PORT)
 })
