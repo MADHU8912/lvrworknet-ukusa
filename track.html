@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Track Order</title>
+</head>
+
+<body>
+
+<h1>Track Order</h1>
+
+<input id="ref" placeholder="Reference Number">
+<button onclick="track()">Track</button>
+
+<p id="info"></p>
+
+<script>
+async function track(){
+
+let ref = document.getElementById("ref").value
+
+let res = await fetch("/track/"+ref)
+
+let data = await res.json()
+
+if(data){
+document.getElementById("info").innerHTML =
+"Customer: "+data.name+
+"<br>Status: "+data.status
+}else{
+document.getElementById("info").innerHTML="Order not found"
+}
+
+}
+</script>
+
+</body>
+</html>

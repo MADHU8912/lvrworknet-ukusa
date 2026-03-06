@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>LVRWORKNET ADMIN</h1>
+
+<h3>Create Order</h3>
+
+<input id="name" placeholder="Customer Name"><br><br>
+<input id="contact" placeholder="Contact Number"><br><br>
+
+<button onclick="create()">Create Order</button>
+
+<p id="result"></p>
+
+<script>
+async function create(){
+
+let res = await fetch("/order",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({
+name:document.getElementById("name").value,
+contact:document.getElementById("contact").value
+})
+})
+
+let data = await res.json()
+
+document.getElementById("result").innerHTML =
+"Order Created. Reference Number: "+data.ref
+
+}
+</script>
+
+</body>
+</html>
